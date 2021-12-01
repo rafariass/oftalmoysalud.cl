@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Contactenos! | Oftalmosalud</title>
+        <link href="src/css/bootstrap.min.css" rel="stylesheet">
+        <link href="src/css/style.css" rel="stylesheet">
+        <link href="src/css/up.css" rel="stylesheet">
+
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" href="src/img/icono-180x180.png" sizes="180x180">
+        <link rel="icon" href="src/img/icono-32x32.png" sizes="32x32" type="image/png">
+        <link rel="icon" href="src/img/icono-16x16.png" sizes="16x16" type="image/png">
+        <link rel="icon" type="image/png" href="src/img/icono.png"/>
+
+        <script src="src/js/jquery-3.3.1.min.js"></script>
+        <script src="src/js/popper.min.js"></script>
+        <script src="src/js/bootstrap.min.js"></script>
+        <script src="src/js/holder.min.js"></script>
+        <script src="src/js/up.js"></script>
+        <script>
+            $("#formulario").submit(function (event) {
+                event.preventDefault();
+            });
+            function onload() {
+                var element = document.getElementById('submit');
+                element.onclick = validate;
+            }
+            function validate(event) {
+                event.preventDefault();
+                grecaptcha.execute();
+            }
+            function onSubmit(token) {
+                validar();
+            }
+            function validar(){
+                var datos = $("#formulario").serialize(); //Toma todos los datos del formulario y los guarda en un arreglo.
+                $.ajax({ //Llamamos a ajax.
+                    type: "post", //Metodo Post del formulario
+                    url: "php/formulario.php", //Directorio del formulario php de validaciones.
+                    data: datos, //Enviamos el arreglo con los datos.
+                    success: function(respuesta){ //Esperamos una respuesta del Formulario.php
+                        if (respuesta == "ok") { //Llamamos a la funcion correspondiente segun validacion de php.
+                            correcto(); //Function mensaje enviado.
+                        }else{
+                            error(respuesta); //Function mensaje no enviado.
+                        }
+                    }
+                })
+            };
+            function correcto() { //Quita el d-none del la alerta mensaje enviado.
+                $("#mensajeError").addClass("d-none");
+                $("#mensajeExito").removeClass("d-none");
+                document.getElementById("nombre").disabled = true;
+                document.getElementById("email").disabled = true;
+                document.getElementById("telefono").disabled = true;
+                document.getElementById("centroMedico").disabled = true;
+                document.getElementById("mensaje").disabled = true;
+                document.getElementById("sendbutton").disabled = true;
+            }
+            function error(respuesta) { //Quita el d-none del la alerta mensaje no enviado.
+                $("#mensajeExito").addClass("d-none");
+                $("#mensajeError").html(respuesta);
+                $("#mensajeError").removeClass("d-none");
+                grecaptcha.reset();
+            }
+        </script>
+    </head>
+    <body>
+        <a class="flotante" id="js_up" href="#ups"><img src="src/img/up.png" width="64" height="64"></a>
+
+        <div class="container-fluid bg-light pt-3 d-none d-xl-block">
+            <div class="container align-items-center">
+                <div class="row align-items-center justify-content-end" style="font-size: 14px;">
+                    <div class="col-xl-3">
+                        <p>Nuestros Horarios de atencion son: <br> de Lunes a Viernes de 9 AM - 20 PM <br> y Sabados de 9 AM -
+                            15 PM.</p>
+                    </div>
+                    <div class="col-xl-3">
+                        <p>
+                            <img src="src/img/icon-location.png" width="30">
+                            <a href="https://goo.gl/maps/VZP2pC3FtN62" target="_blank">Las heras #650, Los Andes.</a><br>
+                            <img src="src/img/icon-location.png" width="30">
+                            <a href="https://goo.gl/maps/GtkqLP923372" target="_blank">Merced #552, San Felipe.</a>
+                        </p>
+                    </div>
+                    <div class="col-xl-3 text-center">
+                        <p>
+                            <img src="src/img/icon-mail.png" width="30">
+                            <a href="mailto:contacto@oftalmoysalud.cl">contacto@oftalmoysalud.cl</a>
+                        </p>
+                    </div>
+                    <div class="col-xl-3 text-center">
+                        <p>
+                            <img src="src/img/icon-cell.png" width="28"> +5634 234 5323<br>
+                            <img src="src/img/icon-cell.png" width="28"> +5634 237 2029
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid bg-light sticky-top">
+            <nav class="container navbar navbar-expand-xl navbar-light bg-light border-top">
+                <a class="navbar-brand" href="index.html">
+                    <img src="src/img/logo.png" width="220" class="d-inline-block align-top" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="quienes_Somos.html">Quienes Somos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="nuestro_Equipo.html">Nuestro Equipo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="especialidades.html">Especialidades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="examenes.html">Exámenes</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Servicios</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="procedimientos.html">Procedimientos</a>
+                                <a class="dropdown-item" href="cirugias.html">Cirugías</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active border-bottom border-info" href="">Contactenos!<span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                    <div class="align-self-end">
+                        <div class="input-group">
+                            <button class="btn btn-outline-info dropdown-toggle my-2 my-sm-0" type="submit" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Reserva de horas</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" target="_blank" href="http://agenda.accaconcagua.cl/">Los Andes</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" target="_blank" href="http://190.208.57.4:81/horaonline/xfrmHoraOnline.aspx">San Felipe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <section class="jumbotron" style="background-image: url(src/img/contactenos/contactenos.jpg); background-repeat: no-repeat; background-position: center;">
+            <div class="container py-3 text-white rounded form-box" style="background: rgba(0, 0, 0, 0.5);">
+                <div class="row justify-content-center">
+                    <div class="col-md-7 col-lg-10">
+                        <h1 class="jumbotron-heading pb-2">Formulario de Contacto</h1>
+                        <hr class="bg-light">
+                        <p class="">Te invitamos a contactarnos.</p>
+                        <div class="alert alert-success d-none" id="mensajeExito">Mensaje enviado correctamente.</div>
+                        <div class="alert alert-danger d-none" id="mensajeError">prueba</div>
+                        <form id="formulario"><!-- Quitar el novalidate -->
+                            <div class="row form-group">
+                                <label for="nombre" class="col-form-label col-md-4">Nombre y Apellido:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="nombre" value="" id="nombre" class="form-control" minlength="5" maxlength="30" required>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="email" class="col-form-label col-md-4">E-mail:</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">@</span>
+                                        </div>
+                                        <input type="email" name="email" value="" id="email" class="form-control" minlength="5" maxlength="50" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="telefono" class="col-form-label col-md-4">Celular:</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">+56</span>
+                                        </div>
+                                        <input type="text" name="telefono" value="" id="telefono" class="form-control" minlength="9" maxlength="9" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="nombre" class="col-form-label col-md-4">Centro Medico:</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <select class="custom-select form-control" name="centroMedico" id="centroMedico">
+                                            <option selected>Las heras, Los Andes</option>
+                                            <option>Merced, San Felipe</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group align-items-center">
+                                <label for="mensaje" class="col-form-label col-md-4">Mensaje:</label>
+                                <div class="col-md-8">
+                                    <textarea rows="4" class="form-control" id="mensaje" name="mensaje" minlength="10" maxlength="150" required></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info w-100 g-recaptcha" data-sitekey="6LdzZI0UAAAAAPxp9FpdK0Q6AolA4pZ-TbPL25KS" 
+                            data-callback="onSubmit" id="sendbutton" name="sendbutton"> Enviar Mensaje
+                            </button>
+                        </form>
+                        <script src='https://www.google.com/recaptcha/api.js'></script>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5">
+            <div class="container">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="btn btn-info" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h5 class="lead my-2 text-left">Centro Medico Las heras, Los Andes:</h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4">
+                                        <p class="pl-1 pl-md-4">
+                                            Nuestros Horarios de atencion son:
+                                            <br> de Lunes a Viernes de 9 AM - 20 PM
+                                            <br> y Sabados de 9 AM - 15 PM.
+                                        </p>
+                                        <p class="pl-1 pl-md-4">
+                                            <img src="src/img/icon-location.png" width="32" height="32">
+                                            <a href="https://goo.gl/maps/VZP2pC3FtN62" target="_blank">Las heras #650, Los Andes.</a><br>
+                                        </p>
+                                        <p class="pl-1 pl-md-4">
+                                            <img src="src/img/icon-mail.png" width="30" height="30">
+                                            <a href="mailto:contacto@oftalmoysalud.cl">contacto@oftalmoysalud.cl</a>
+                                        </p>
+                                        <p class="pl-1 pl-md-4">
+                                            <img src="src/img/icon-cell.png" width="30" height="30">
+                                            +5634 234 5323
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="container bg-light px-2 pt-2 pb-1">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3352.417915397654!2d-70.60479058481646!3d-32.83418478095488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x968804df3c5f554f%3A0x2bff7b5676371cc9!2sLas+Heras+650%2C+Los+Andes%2C+Regi%C3%B3n+de+Valpara%C3%ADso!5e0!3m2!1ses-419!2scl!4v1535028289414"
+                                                frameborder="0" style="border:0" height="450" allowfullscreen class="w-100"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="btn btn-info" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h5 class="lead my-2 text-left">Centro Medico Merced, San Felipe:</h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4">
+                                        <p class="pl-1 pl-md-4">
+                                            Nuestros Horarios de atencion son:
+                                            <br> de Lunes a Viernes de 9 AM - 20 PM
+                                            <br> y Sabados de 9 AM - 15 PM.
+                                        </p>
+                                        <p class="pl-1 pl-md-4">
+                                            <img src="src/img/icon-location.png" width="32" height="32">
+                                            <a href="https://goo.gl/maps/GtkqLP923372" target="_blank">Merced #552, San Felipe.</a><br>
+                                        </p>
+                                        <p class="pl-1 pl-md-4">
+                                            <img src="src/img/icon-mail.png" width="30" height="30">
+                                            <a href="mailto:contacto@oftalmoysalud.cl">contacto@oftalmoysalud.cl</a>
+                                        </p>
+                                        <p class="pl-1 pl-md-4">
+                                            <img src="src/img/icon-cell.png" width="30" height="30">
+                                            +5634 237 2029
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="container bg-light px-2 pt-2 pb-1">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1677.7902039839078!2d-70.73013412815789!3d-32.75033059971391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x968817a1d7f952d3%3A0x1cda1b82e7222db5!2sOftalmosalud+San+Felipe!5e0!3m2!1ses-419!2scl!4v1535371005757"
+                                                frameborder="0" style="border:0" height="450" allowfullscreen class="w-100"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container-fluid bg-light pt-3">
+                <div class="container align-items-center">
+                    <div class="row align-items-center justify-content-end" style="font-size: 14px;">
+                        <div class="col-lg-3">
+                            <p>
+                                Nuestros Horarios de atencion son:
+                                <br> de Lunes a Viernes de 9 AM - 20 PM
+                                <br> y Sabados de 9 AM - 15 PM.
+                            </p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>
+                                <img src="src/img/icon-location.png" width="30" height="30">
+                                <a href="https://goo.gl/maps/VZP2pC3FtN62" target="_blank">Las heras #650, Los Andes.</a><br>
+                                <img src="src/img/icon-location.png" width="30" height="30">
+                                <a href="https://goo.gl/maps/GtkqLP923372" target="_blank">Merced #552, San Felipe.</a>
+                            </p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>
+                                <img src="src/img/icon-mail.png" width="30" height="30">
+                                <a href="mailto:contacto@oftalmoysalud.cl">contacto@oftalmoysalud.cl</a>
+                            </p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>
+                                <img src="src/img/icon-cell.png" width="28"> +5634 234 5323<br>
+                                <img src="src/img/icon-cell.png" width="28"> +5634 237 2029
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row align-items-center" style="font-size: 14px;">
+                        <div class="container">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row align-items-center" style="font-size: 14px;">
+                        <div class="container">
+                            <p>OFTALMOSALUD &copy; Copyright 2018 - Todos los derechos reservados. Created by
+                                <a href="http://www.rafariass.cl" target="_blank" class="text-dark"><ins>rafariass</ins></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
