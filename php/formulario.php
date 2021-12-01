@@ -43,7 +43,7 @@ if (empty(trim($_POST['centroMedico']))) {
 } else {
     $centroMedico = trim($_POST['centroMedico']);
     $centroMedico = filter_var($centroMedico, FILTER_SANITIZE_STRING);
-    if($centroMedico != 'Las heras, Los Andes' && $centroMedico != 'Merced, San Felipe'){
+    if($centroMedico != 'Las heras, Los Andes' && $centroMedico != 'Merced, San Felipe' && $centroMedico != 'Chicureo'){
         $error .= 'Centro Medico inválido. </br>';
     }
 }
@@ -64,7 +64,8 @@ if($error == ''){
     $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
 
     //DESTINATARIO DEL MENSAJE
-    $enviarA = 'contacto@oftalmoysalud.cl';
+    /* $enviarA = 'contacto@oftalmoysalud.cl'; */
+    $enviarA = 'raulfaria@hotmail.com';
 
     //ASUNTO DEL MENSAJE
     $asunto = 'Solicitud de contacto para OftalmoSalud: '.$centroMedico;

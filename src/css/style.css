@@ -200,6 +200,10 @@ body {
     transform: scale(0.7);
 }
 
+.text-decoration-none {
+    text-decoration: none !important;
+  }
+
 @keyframes bounceIn {
     from,
     20%,
