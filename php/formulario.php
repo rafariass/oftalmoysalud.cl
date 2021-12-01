@@ -64,8 +64,7 @@ if($error == ''){
     $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
 
     //DESTINATARIO DEL MENSAJE
-    /* $enviarA = 'contacto@oftalmoysalud.cl'; */
-    $enviarA = 'raulfaria@hotmail.com';
+    $enviarA = 'contacto@oftalmoysalud.cl';
 
     //ASUNTO DEL MENSAJE
     $asunto = 'Solicitud de contacto para OftalmoSalud: '.$centroMedico;
