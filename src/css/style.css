@@ -256,13 +256,11 @@ body {
     }
 }
 
-.border-plexr {
-
-}
+/* .border-plexr {}
 
 .border-plexr:hover {
     transform: scale(0.7);
-}
+} */
 
 .text-decoration-none {
     text-decoration: none !important;
