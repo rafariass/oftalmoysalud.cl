@@ -8,6 +8,22 @@ body {
     color: #5a5a5a;
 }
 
+.logo-oftalmosalud {
+    width: 140px;
+}
+
+@media (min-width: 320px) {
+    .logo-oftalmosalud {
+        width: 180px;
+    }
+}
+
+@media (min-width: 414px) {
+    .logo-oftalmosalud {
+        width: 220px;
+    }
+}
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 /* Carousel base class */
@@ -36,6 +52,54 @@ body {
     left: 0;
     min-width: 100%;
     height: 32rem;
+}
+
+.carousel-item-one {
+    background-image: url(../img/inicio/1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.carousel-item-two {
+    background-image: url(../img/inicio/3.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.carousel-item-three {
+    background-image: url(../img/inicio/2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.shadow-layer {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-indicators li {
+    width: 45px;
+    height: 10px;
+}
+
+.carousel-title {
+    font-size: 20px;
+}
+
+.carousel-paragraph {
+    font-size: 10px;
+}
+
+@media (min-width: 320px) {
+    .carousel-title {
+        font-size: 25px;
+    }
+
+    .carousel-paragraph {
+        font-size: 15px;
+    }
 }
 
 /* MARKETING CONTENT
